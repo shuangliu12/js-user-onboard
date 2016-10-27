@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Challenge 4</title>
+    <style>
+      .errormsg {
+        display: none;
+        color: red;
+        font-family: cursive;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function checkForm(){
+        var nameErrorMsg = document.getElementById('nameerrormsg');
+        var addressErrorMsg = document.getElementById('addrerrormsg');
+        var name = document.getElementById('fullname');
+        var address = document.getElementById('streetaddr');
+        var errormsg = document.getElementsByClassName('errormsg');
+
+        var requiredFields = [{element: name, msg: nameErrorMsg}, {element: address, msg: addressErrorMsg}];
+
+        var returnValue = true;
+        requiredFields.forEach(function(element) {
+          if (!element.element.value) {
+            element.msg.style.display = 'block';
+            returnValue = false;
+          } else {
+            element.msg.style.display = 'none';
+          }
+        })
+        return returnValue;
+      }
+    </script>
+</head>
+<body>
+	<form  action="mailto:me@fakeemail.com" onsubmit="return checkForm();">
+  <fieldset>
+
+    <legend>Personal details</legend>
+    <p>
+      <label>
+        Full name:
+        <input type="text" name="fullname" id="fullname">
+      </label>
+    </p>
+    <p class="errormsg" id="nameerrormsg">Please enter your name above</p>
+
+    <p>
+      <label>
+        Street Address:
+        <input type="text" name="streetaddr" id="streetaddr">
+      </label>
+    </p>
+    <p class="errormsg" id="addrerrormsg">Please enter your street address</p>
+
+  </fieldset>
+  <input type="submit" value="Submit it!">
+</form>
+</body>
+</html>
